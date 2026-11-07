@@ -70,6 +70,9 @@ Main functions
   read_values(data_dir, file_id)   long table of values:
                                    place, indicator, year, value
   file_ids(data_dir)               list of all file sets in the folder
+Note: this layout was checked on the June 2026 release only. If Istat
+   changes the format in a later release, the checks above should be run
+   again.
 """
 from __future__ import annotations
 
@@ -80,6 +83,7 @@ import numpy as np
 import pandas as pd
 
 MISSING = -1e8
+
 
 
 def _str(b: bytes) -> str:
