@@ -1,0 +1,21 @@
+region_num,region_name,macro_area
+1,Piemonte,Nord-ovest
+2,Valle d'Aosta,Nord-ovest
+3,Lombardia,Nord-ovest
+4,Trentino-Alto Adige,Nord-est
+5,Veneto,Nord-est
+6,Friuli-Venezia Giulia,Nord-est
+7,Liguria,Nord-ovest
+8,Emilia-Romagna,Nord-est
+9,Toscana,Centro
+10,Umbria,Centro
+11,Marche,Centro
+12,Lazio,Centro
+13,Abruzzo,Sud
+14,Molise,Sud
+15,Campania,Sud
+16,Puglia,Sud
+17,Basilicata,Sud
+18,Calabria,Sud
+19,Sicilia,Isole
+20,Sardegna,Isole

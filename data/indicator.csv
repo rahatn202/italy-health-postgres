@@ -1,0 +1,7 @@
+indicator_id,short_name,title_it,title_en,unit,hfa_group
+0,population,Popolazione residente M+F,"Resident population, both sexes",persons,Contesto socio-demografico
+7210,beds,Posti letto ospedalieri ordinari,"Ordinary (overnight) hospital beds, public and accredited private hospitals",beds,Assistenza sanitaria
+9122,nurses_hosp,"Personale infermieristico istituti cura pubblici,privati accreditati",Nursing staff in public and accredited private hospitals,persons,Le risorse sanitarie
+9102,nurses_ssn,Personale infermieristico dipendente SSN,Nursing staff employed by the national health service (SSN),persons,Le risorse sanitarie
+9180,phys_registered,Medici iscritti all’albo M+F,Physicians enrolled in the provincial medical register,persons,Le risorse sanitarie
+9240,phys_spec_active,Medici specialisti in attività M+F,Practising specialist physicians (excl. GPs and family paediatricians),persons,Le risorse sanitarie
