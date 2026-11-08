@@ -58,6 +58,8 @@ observation (observation_id PK,
 ```
 src/hfa_reader.py         reader for the HFA binary format (documented in the docstring)
 src/export_csv.py         writes the tidy CSVs in data/
+src/quality.py            data quality rules in pandas (used by the app)
+streamlit_app.py          interactive browser explorer
 data/*.csv                exported data (so the database can be built without HFA)
 sql/01_schema.sql         tables, keys, constraints, indexes
 sql/02_load.sql           staged COPY load
@@ -83,11 +85,29 @@ psql -d italy_health -f sql/04_quality_checks.sql
 psql -d italy_health -f sql/05_analysis.sql
 ```
 
+## Interactive explorer
+
+`streamlit_app.py` is a browser app for exploring the data without SQL:
+
+- **Ranking**: provinces or regions ranked for any year, as counts or per 1,000 residents, with a region filter
+- **Trends**: compare up to five places over time; years with no data show as gaps in the line
+- **Data**: the filtered table, with a CSV download
+- **Data quality**: the values flagged as suspect, and the coverage of each indicator
+
+The quality rules live in `src/quality.py`. They are the same rules as the `suspect_observation` view, and they flag the same 122 values.
+
+Run it locally:
+
+```bash
+pip install -r requirements.txt
+streamlit run streamlit_app.py
+```
+
 ## Data quality findings
 
 The checks in `sql/04_quality_checks.sql` found these problems in the source data:
 
-- **Physicians on the register, 2014 (province level):** values are shuffled between provinces. For example, Perugia shows 37,038 physicians, which is Rome's level, while the whole Umbria region has 6,400. Province sums miss region totals by up to 500%. 96 of the 2014 province values are flagged and excluded from `province_panel`.
+- **Physicians on the register, 2014 (province level):** values are shuffled between provinces. For example, province Perugia shows 37,038 physicians, which is Rome's level, while the whole Umbria region has 6,400. Province sums miss region totals by up to 500%. 96 of the 2014 province values are flagged and excluded from `province_panel`.
 - **Physicians on the register before 2011:** only a few provinces report, and the values do not match the later series. Region totals start in 2011, so the series is treated as reliable from 2011.
 - **Sardinia:** HFA lists 8 provinces from before the 2016 reorganization. In recent years only 4 of them have data, and they cover about 79% of the region's population. Province-level comparisons within Sardinia are therefore unreliable.
 - **Gaps:** the 5 Calabrian provinces have no 2020 bed data, the Lazio provinces have no data for 1991–1995, and Sardinian specialist physician data are missing for 2017–2019.
